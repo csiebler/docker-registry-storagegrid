@@ -1,0 +1,35 @@
+version: 0.1
+log:
+  fields:
+    service: registry
+storage:
+  s3:
+    accesskey: XXXXXXXX
+    secretkey: XXXXXXXX
+    region: us-east-1
+    regionendpoint: https://XXXXXXXX:XXXX
+    bucket: XXXXXXXX
+    encrypt: false
+    secure: true
+    v4auth: true
+    chunksize: 5242880
+    rootdirectory: /
+  delete:
+    enabled: true
+  maintenance:
+    uploadpurging:
+      enabled: true
+      age: 168h
+      interval: 24h
+      dryrun: true
+  cache:
+    blobdescriptor: inmemory
+http:
+  addr: :5000
+  headers:
+    X-Content-Type-Options: [nosniff]
+health:
+  storagedriver:
+    enabled: true
+    interval: 10s
+    threshold: 3
